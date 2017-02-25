@@ -111,32 +111,32 @@ void Display8() {
 
 		glColor3f(0.2, 0.15, 0.88);//albastru
 		glBegin(GL_POLYGON);//desenam cu albastru un poigon mare, umplut
-			glVertex2f(0.3, 0.5);
-			glVertex2f(0.6, 0);
-			glVertex2f(0.3,-0.5);
-			glVertex2f(-0.3,-0.5);
-			glVertex2f(-0.6, 0);
-			glVertex2f(-0.3, 0.5);
+			glVertex2f(0.30, 0.50);
+			glVertex2f(0.60, 0.0);
+			glVertex2f(0.30, -0.50);
+			glVertex2f(-0.30, -0.50);
+			glVertex2f(-0.60, 0.0);
+			glVertex2f(-0.30, 0.50);
 		glEnd();
 
 		glColor3f(1.0, 1.0, 1.0);//alb
 		glBegin(GL_POLYGON);//desenam cu alb un poligon in interiorul primului
-			glVertex2f(0.2, 0.3);
-			glVertex2f(0.35, 0);
-			glVertex2f(0.2, -0.3);
-			glVertex2f(-0.2, -0.3);
-			glVertex2f(-0.35, 0);
-			glVertex2f(-0.2, 0.3);
+			glVertex2f(0.2, 0.30);
+			glVertex2f(0.35, 0.0);
+			glVertex2f(0.2, -0.30);
+			glVertex2f(-0.2, -0.30);
+			glVertex2f(-0.35, 0.0);
+			glVertex2f(-0.2, 0.30);
 		glEnd();
 
 		glColor3f(1, 0.1, 0.1); // rosu
 		glBegin(GL_LINE_LOOP);//ducem o linie pe poligon
-			glVertex2f(0.2, 0.3);
-			glVertex2f(0.35, 0);
-			glVertex2f(0.2, -0.3);
-			glVertex2f(-0.2, -0.3);
-			glVertex2f(-0.35, 0);
-			glVertex2f(-0.2, 0.3);
+			glVertex2f(0.2, 0.30);
+			glVertex2f(0.35, 0.0);
+			glVertex2f(0.2, -0.30);
+			glVertex2f(-0.2, -0.30);
+			glVertex2f(-0.35, 0.0);
+			glVertex2f(-0.2, 0.30);
 		
 
    glEnd();

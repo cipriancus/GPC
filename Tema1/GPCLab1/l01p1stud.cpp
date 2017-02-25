@@ -16,130 +16,130 @@
 unsigned char prevKey;
 
 void Display1() {
-   glColor3f(0.2,0.15,0.88); // albastru
-   glBegin(GL_LINES); // trasarea unei linii
-      glVertex2i(1,1); // coordonatele unui varf
-      glVertex2i(-1,-1);
-   glEnd();
+	glColor3f(0.2, 0.15, 0.88); // albastru
+	glBegin(GL_LINES); // trasarea unei linii
+	glVertex2i(1, 1); // coordonatele unui varf
+	glVertex2i(-1, -1);
+	glEnd();
 
-   glColor3f(1,0.1,0.1); // rosu
-   glBegin(GL_LINES);
-      glVertex2i(-1,1);
-      glVertex2i(1,-1);
-   glEnd();
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINES);
+	glVertex2i(-1, 1);
+	glVertex2i(1, -1);
+	glEnd();
 
-   glBegin(GL_LINES);
-      glVertex2d(-0.5,0);
-      glVertex2d(0.5,0);
-   glEnd();
+	glBegin(GL_LINES);
+	glVertex2d(-0.5, 0);
+	glVertex2d(0.5, 0);
+	glEnd();
 }
 
 void Display2() {
-   glColor3f(1,0.1,0.1); // rosu
-   glBegin(GL_LINES); 
-      glVertex2f(1.0,1.0); 
-      glVertex2f(0.9,0.9); 
-      glVertex2f(0.8,0.8); 
-      glVertex2f(0.7,0.7); 
-      glVertex2f(0.6,0.6); 
-      glVertex2f(0.5,0.5); 
-      glVertex2f(-0.5,-0.5); 
-      glVertex2f(-1.0,-1.0);
-   glEnd();
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINES);
+	glVertex2f(1.0, 1.0);
+	glVertex2f(0.9, 0.9);
+	glVertex2f(0.8, 0.8);
+	glVertex2f(0.7, 0.7);
+	glVertex2f(0.6, 0.6);
+	glVertex2f(0.5, 0.5);
+	glVertex2f(-0.5, -0.5);
+	glVertex2f(-1.0, -1.0);
+	glEnd();
 }
 
 void Display3() {
-   // trasare puncte GL_POINTS : deseneaza n puncte
-   glColor3f(1,0.1,0.1); // rosu
-   glBegin(GL_POINTS); 
-	  glVertex2f(-0.5, -0.5);
-	  glVertex2f(0.5, 0.5);
-	  glVertex2f(-0.5, 0.5);
-	  glVertex2f(0.5, -0.5);
-   glEnd();
+	// trasare puncte GL_POINTS : deseneaza n puncte
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_POINTS);
+	glVertex2f(-0.5, -0.5);
+	glVertex2f(0.5, 0.5);
+	glVertex2f(-0.5, 0.5);
+	glVertex2f(0.5, -0.5);
+	glEnd();
 }
 
 void Display4() {
-   glColor3f(1,0.1,0.1); // rosu
-   // trasare linie poligonala GL_LINE_STRIP : (v0,v1), (v1,v2), (v_{n-2},v_{n-1})
-   glBegin(GL_LINE_STRIP); 
-		glVertex2f(1.0, 1.0);
-		glVertex2f(1.0, 0.8);
-		glVertex2f(0.7, 0.7);
-		glVertex2f(0.7, 0.5);
-   glEnd();
+	glColor3f(1, 0.1, 0.1); // rosu
+							// trasare linie poligonala GL_LINE_STRIP : (v0,v1), (v1,v2), (v_{n-2},v_{n-1})
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(1.0, 1.0);
+	glVertex2f(1.0, 0.85);
+	glVertex2f(0.6, 0.6);
+	glVertex2f(0.6, 0.45);
+	glEnd();
 
 }
 void Display5() {
-   glColor3f(1,0.1,0.1); // rosu
-   // trasare linie poligonala inchisa GL_LINE_LOOP : (v0,v1), (v1,v2), (v_{n-1},v0)
-   glBegin(GL_LINE_LOOP); 
-	   glVertex2f(1.0, 1.0);
-	   glVertex2f(1.0, 0.8);
-	   glVertex2f(0.7, 0.7);
-	   glVertex2f(0.7, 0.5);
-   glEnd();
+	glColor3f(1, 0.1, 0.1); // rosu
+							// trasare linie poligonala inchisa GL_LINE_LOOP : (v0,v1), (v1,v2), (v_{n-1},v0)
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(1.0, 1.0);
+	glVertex2f(1.0, 0.85);
+	glVertex2f(0.6, 0.6);
+	glVertex2f(0.6, 0.45);
+	glEnd();
 }
 
 void Display6() {
-   glColor3f(1,0.1,0.1); // rosu
-   // trasare triunghiuri GL_TRIANGLES : (v0,v1,v2), (v3,v4,v5), ...polygonfill
-   glBegin(GL_TRIANGLES); 
-		glVertex2f(1, 1);
-		glVertex2f(1, 0.8);
-		glVertex2f(0.8,0.8);
+	glColor3f(1, 0.1, 0.1); // rosu
+							// trasare triunghiuri GL_TRIANGLES : (v0,v1,v2), (v3,v4,v5), ...polygonfill
+	glBegin(GL_TRIANGLES);
+	glVertex2f(1, 1);
+	glVertex2f(1, 0.85);
+	glVertex2f(0.85, 0.85);
 
-		glVertex2f(-1, -1);//coltul simetric
-		glVertex2f(-1, -0.8);
-		glVertex2f(-0.8, -0.8);
-   glEnd();
+	glVertex2f(-1, -1);//coltul simetric
+	glVertex2f(-1, -0.85);
+	glVertex2f(-0.85, -0.85);
+	glEnd();
 }
 
 void Display7() {
-   // trasare patrulatere GL_QUADS : (v0,v1,v2,v3), (v4,v5,v6,v7), ...
-   glBegin(GL_QUADS); 
-		glVertex2f(1, 1);
-		glVertex2f(1, 0.6);
-		glVertex2f(0.6, 0.6);
-		glVertex2f(0.4, 0.8);
-   glEnd();
+	// trasare patrulatere GL_QUADS : (v0,v1,v2,v3), (v4,v5,v6,v7), ...
+	glBegin(GL_QUADS);
+	glVertex2f(1, 1);
+	glVertex2f(1, 0.5);
+	glVertex2f(0.5, 0.5);
+	glVertex2f(0.3, 0.7);
+	glEnd();
 }
 
 void Display8() {
-   // trasare poligon convex GL_QUADS : (v0,v1,v2, ..., v_{n-1})
-   glBegin(GL_POLYGON);
+	// trasare poligon convex GL_QUADS : (v0,v1,v2, ..., v_{n-1})
+	glBegin(GL_POLYGON);
 
-		glColor3f(0.2, 0.15, 0.88);//albastru
-		glBegin(GL_POLYGON);//desenam cu albastru un poigon mare, umplut
-			glVertex2f(0.30, 0.50);
-			glVertex2f(0.60, 0.0);
-			glVertex2f(0.30, -0.50);
-			glVertex2f(-0.30, -0.50);
-			glVertex2f(-0.60, 0.0);
-			glVertex2f(-0.30, 0.50);
-		glEnd();
+	glColor3f(0.2, 0.15, 0.88);//albastru
+	glBegin(GL_POLYGON);//desenam cu albastru un poigon mare, umplut
+	glVertex2f(0.38, 0.64);
+	glVertex2f(0.74, 0.0);
+	glVertex2f(0.38, -0.64);
+	glVertex2f(-0.38, -0.64);
+	glVertex2f(-0.74, 0.0);
+	glVertex2f(-0.38, 0.64);
+	glEnd();
 
-		glColor3f(1.0, 1.0, 1.0);//alb
-		glBegin(GL_POLYGON);//desenam cu alb un poligon in interiorul primului
-			glVertex2f(0.2, 0.30);
-			glVertex2f(0.35, 0.0);
-			glVertex2f(0.2, -0.30);
-			glVertex2f(-0.2, -0.30);
-			glVertex2f(-0.35, 0.0);
-			glVertex2f(-0.2, 0.30);
-		glEnd();
+	glColor3f(1.0, 1.0, 1.0);//alb
+	glBegin(GL_POLYGON);//desenam cu alb un poligon in interiorul primului
+	glVertex2f(0.25, 0.43);
+	glVertex2f(0.5, 0.0);
+	glVertex2f(0.25, -0.43);
+	glVertex2f(-0.25, -0.43);
+	glVertex2f(-0.5, 0.0);
+	glVertex2f(-0.25, 0.43);
+	glEnd();
 
-		glColor3f(1, 0.1, 0.1); // rosu
-		glBegin(GL_LINE_LOOP);//ducem o linie pe poligon
-			glVertex2f(0.2, 0.30);
-			glVertex2f(0.35, 0.0);
-			glVertex2f(0.2, -0.30);
-			glVertex2f(-0.2, -0.30);
-			glVertex2f(-0.35, 0.0);
-			glVertex2f(-0.2, 0.30);
-		
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINE_LOOP);//ducem o linie pe poligon
+	glVertex2f(0.25, 0.43);
+	glVertex2f(0.5, 0.0);
+	glVertex2f(0.25, -0.43);
+	glVertex2f(-0.25, -0.43);
+	glVertex2f(-0.5, 0.0);
+	glVertex2f(-0.25, 0.43);
 
-   glEnd();
+
+	glEnd();
 }
 
 void Init(void) {

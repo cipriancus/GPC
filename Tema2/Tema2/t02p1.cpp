@@ -98,7 +98,7 @@ void Display2() {
 
 void Display3() {
 	// functia cu distante
-	double xmax = 100;
+	double xmax = 33;//100;
 	double ymax = 1.01;
 	double ratia = 0.5;
 
@@ -159,13 +159,13 @@ void Display4() {
 
 void Display5() {
 	// trisectoarea lui Longchamps
-	double scale = 1.35;
+	//double scale = 1.35;
 	double ymax = 0;
 	double xmin = 0;
 	double a = 0.2;
 	double pi = 4 * atan(1.0);
 	double ratia = 0.05;
-	double t, x, y, x1, y1;
+	double t, x, y, x1, y1, t1;
 
 	for (t = -pi / 2 + ratia; t < pi / 2; t += ratia) {
 		if (t != pi / 6, t != -pi / 6) {
@@ -184,21 +184,27 @@ void Display5() {
 	bool ok = 0;
 	glColor3f(1, 0.1, 0.1); // rosu
 	glBegin(GL_TRIANGLES);
-	for (t = -pi / 2 + (2 / 5)*ratia; t < pi / 2; t += ratia / 5) {
+	t1 = -pi / 2;
+	for (t = -pi / 2; t < pi / 2; t += ratia/5) {
 		x1 = x;
 		y1 = y;
 		if (t != pi / 6, t != -pi / 6) {
+			//printf("%f\n", x);
 			x = a / (4 * cos(t)*cos(t) - 3) / -xmin;
 			y = a*tan(t) / (4 * cos(t)*cos(t) - 3) / ymax;
 		}
+		double z = 0.99;
 		if (ok && x < 0 && y>0) {
-			glVertex3f(x, y, 0);
-			glVertex3f(x1, y1, 0);
-			glVertex3f(-0.99, 0.99, 0);
+			if ((a*tan(t)>-3&&a*tan(t)<-0.8)|| (a*tan(t)>-0.17 && a*tan(t)<-0.13)){
+				glVertex3f(x, y, 0);
+				glVertex3f(-z, z, 0);
+				glVertex3f(x1, y1, 0);
+			}
 			ok = 0;
 		}
 		else
 			ok = 1;
+		t1 = t;
 	}
 	glEnd();
 

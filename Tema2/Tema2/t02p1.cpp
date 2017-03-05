@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "gl\glut.h"
+#include "glut.h"
 
 // dimensiunea ferestrei in pixeli
 #define dim 300
@@ -97,7 +97,7 @@ void Display2() {
 }
 
 void Display3() {
-	// functia
+	// functia cu distante
 	double xmax = 100;
 	double ymax = 1.01;
 	double ratia = 0.5;
@@ -110,7 +110,7 @@ void Display3() {
 		if (x == 0)
 			y1 = 1 / ymax;
 		else
-			y1 = ((fabs(floor(x + 0.5) - x)) / x) / ymax;
+			y1 = ((fabs(floor(x + ratia) - x)) / x) / ymax;
 		glVertex2f(x1, y1);
 	}
 	glEnd();
@@ -118,6 +118,43 @@ void Display3() {
 
 void Display4() {
 	// melcul lui Pascal
+	double pi = 4 * atan(1.0);
+	double ratia = 0.05;
+	double a = 0.3;
+	double b = 0.2;
+
+	double xmax=a - b - 1;
+	double xmin=a + b + 1;
+	double ymin=0;
+	double ymax=0;
+
+	for (double t = -pi + ratia; t < pi; t += ratia) {
+		double x, y;
+
+		x = 2 * (a*cos(b) + b)*cos(t);
+		xmax = (xmax < x) ? x : xmax;
+		xmin = (xmin > x) ? x : xmin;
+
+		y = 2 * (a*cos(t) + b)*sin(t);
+		ymax = (ymax < y) ? y : ymax;
+		ymin = (ymin > y) ? y : ymin;
+
+	}
+
+	xmax = (fabs(xmax) > fabs(xmin)) ? fabs(xmax) : fabs(xmin);
+	ymax = (fabs(ymax) > fabs(ymin)) ? fabs(ymax) : fabs(ymin);
+
+	ymax = ymax*1.6;
+	xmax = xmax*1.2;
+
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINE_STRIP);
+	for (double t = -pi + ratia; t < pi; t += ratia) {
+		double x =( 2 * (a*cos(t) + b)*cos(t))/xmax;
+		double y = (2 * (a*cos(t) + b)*sin(t))/ymax;
+		glVertex2d(x, y);
+	}
+	glEnd();
 }
 
 void Display5() {
@@ -183,6 +220,46 @@ void Display5() {
 
 void Display6() {
 	// cicloida
+	double pi = 4 * atan(1.0);
+
+	double interval_inf=-3*pi;//cate spirale punem pe cerc
+	double interval_sup=3*pi;
+
+	double ratia = 0.05;
+	double a = 0.1;
+	double b = 0.2;
+
+	double xmax = a - b - 1;
+	double xmin = a + b + 1;
+	double ymin = 0;
+	double ymax = 0;
+
+	for (double t = interval_inf + ratia; t < interval_sup; t += ratia) {
+		double x, y;
+
+		x = a*t - b*sin(t);
+		xmax = (xmax < x) ? x : xmax;
+		xmin = (xmin > x) ? x : xmin;
+
+		y = a - b*cos(t);
+		ymax = (ymax < y) ? y : ymax;
+		ymin = (ymin > y) ? y : ymin;
+
+	}
+
+	xmax = (fabs(xmax) > fabs(xmin)) ? fabs(xmax) : fabs(xmin);
+	ymax = (fabs(ymax) > fabs(ymin)) ? fabs(ymax) : fabs(ymin);
+
+	ymax *= 3;
+
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINE_STRIP);
+	for (double t = interval_inf + ratia; t < interval_sup; t += ratia) {
+		double x = (a*t - b*sin(t)) / xmax;
+		double y = (a - b*cos(t)) / ymax;
+		glVertex2d(x, y);
+	}
+	glEnd();
 }
 
 void Display7() {
@@ -207,6 +284,22 @@ void Display7() {
 
 void Display8() {
 	// hipocicloida
+	double r = 0.3;
+	double R = 0.1;
+	double pi = 4 * atan(1.0);
+	double xmax = 2 * pi;
+	double ratia = 0.05;
+
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINE_STRIP);
+	for (double t = 0; t < xmax; t += ratia) {
+		double x, y;
+		x = (R - r)*cos(r*t / R) - r*cos(t - r*t / R);
+		y = (R - r)*sin(r*t / R) - r*sin(t - r*t / R);
+
+		glVertex2f(x, y);
+	}
+	glEnd();
 }
 
 void Display9() {
@@ -241,16 +334,23 @@ void Display9() {
 }
 
 void Display10() {
-	// spirala logaritmica
+	double a = 0.02;
+	double ratia = 0.05;
+	glColor3f(1, 0.1, 0.1); // rosu
+	glBegin(GL_LINE_STRIP);
+	for (double t = 0 + ratia; t < 5; t += ratia) {
+		double r = a*exp(1 + t);
+		double x = r*cos(t);
+		double y = r*sin(t);
+		glVertex2f(x, y);
+	}
+	glEnd();
 }
 
 void Init(void) {
-
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 
 	glLineWidth(1);
-
-	//   glPointSize(4);
 
 	glPolygonMode(GL_FRONT, GL_FILL);
 }

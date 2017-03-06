@@ -148,7 +148,7 @@ void Display4() {
 	xmax = xmax*1.2;
 
 	glColor3f(1, 0.1, 0.1); // rosu
-	glBegin(GL_LINE_STRIP);
+	glBegin(GL_LINE_LOOP);
 	for (double t = -pi + ratia; t < pi; t += ratia) {
 		double x =( 2 * (a*cos(t) + b)*cos(t))/xmax;
 		double y = (2 * (a*cos(t) + b)*sin(t))/ymax;

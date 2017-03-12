@@ -371,8 +371,8 @@ public:
 		}
 		else
 		{
-			v.rotatie(60);
-			curba(nivel, lungime, -60,p,v);
+			v.rotatie(-60);
+			curba(nivel, lungime, 60,p,v);
 		}
 	}
 

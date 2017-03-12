@@ -213,9 +213,9 @@ public:
 		CComplex z0, z1;
 		int i;
 		z0 = m.c;
-		for (i = m.nriter; i>0; i--)
+		for (i = m.nriter; i>0; i--)//iteram
 		{
-			z1 = z0 * z0 + x;
+			z1 = z0 * z0 + x;//zn+1=zn^2+c
 			if (z1.getModul() > m.modmax)
 			{
 				// x nu apartine m.J-F deoarece procesul iterativ converge la infinit

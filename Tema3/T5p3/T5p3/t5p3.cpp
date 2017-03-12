@@ -303,8 +303,6 @@ public:
   }
 };
 
-
-
 class CCurbaHilbert
 {
 public:
@@ -348,6 +346,105 @@ public:
   }
 };
 
+class CSierpinkiArrow
+{
+public:
+	void curba(int nivel, double lungime, int unghi,CPunct &p,CVector &v) {
+		if (nivel == 0) {
+			v.deseneaza(p, lungime);
+			p = v.getDest(p, lungime);
+		}
+		else {
+			curba(nivel - 1, lungime / 2, -unghi, p, v);
+			v.rotatie(+unghi);
+			curba(nivel - 1, lungime / 2, +unghi, p, v);
+			v.rotatie(+unghi);
+			curba(nivel - 1, lungime / 2, -unghi, p, v);
+		}
+	}
+
+	void sierpinski_arrowhead(double lungime, int nivel, CPunct &p, CVector &v)
+	{
+		if ((nivel % 2 ) == 0)
+		{
+			curba(nivel, lungime,+60, p, v);
+		}
+		else
+		{
+			v.rotatie(60);
+			curba(nivel, lungime, -60,p,v);
+		}
+	}
+
+	void afisare(double lungime, int nivel)
+	{
+		CVector v(0.0, 1.0);
+		CPunct p(0.0, 0.0);
+
+		sierpinski_arrowhead(lungime, nivel, p, v);
+	}
+};
+
+class CArborePerronModificat
+{
+public:
+	void arborePerron(double lungime,
+		int nivel,
+		double factordiviziune,
+		CPunct p,
+		CVector v)
+	{
+		assert(factordiviziune != 0);
+		CPunct p1, p2;
+		if (nivel == 0)
+		{
+		}
+		else
+		{
+			v.rotatie(-40);
+			v.deseneaza(p, lungime);
+			p1 = v.getDest(p, lungime);
+			arborePerron(lungime * factordiviziune, nivel - 1, factordiviziune, p1, v);
+
+			v.rotatie(70);
+			v.deseneaza(p, lungime);
+			p1 = v.getDest(p, lungime);
+			p2 = p1;
+
+			v.rotatie(30);
+			v.deseneaza(p1, lungime);
+			p1 = v.getDest(p1, lungime);
+			arborePerron(lungime * factordiviziune, nivel - 1, factordiviziune, p1, v);
+
+			p1 = p2;
+			v.rotatie(-60);
+			v.deseneaza(p1, lungime);
+			p1 = v.getDest(p1, lungime);
+			p2 = p1;
+
+			v.rotatie(-90);
+			v.deseneaza(p1, lungime);
+			p1 = v.getDest(p1, lungime);
+			arborePerron(lungime * factordiviziune, nivel - 1, factordiviziune, p1, v);
+
+			p1 = p2;
+			v.rotatie(120);
+			v.deseneaza(p1, lungime);
+			p1 = v.getDest(p1, lungime);
+			arborePerron(lungime * factordiviziune, nivel - 1, factordiviziune, p1, v);
+		}
+	}
+
+	void afisare(double lungime, int nivel)
+	{
+		CVector v(0, 1.0);
+		CPunct p(-0.8,1);
+
+		v.deseneaza(p, -0.25);
+		p = v.getDest(p, -0.25);
+		arborePerron(-lungime, nivel, 0.3, p, v);
+	}
+};
 
 class CImag1
 {
@@ -517,7 +614,6 @@ public:
 	}
 };
 
-
 // afisare curba lui Koch "fulg de zapada"
 void Display1() {
   CCurbaKoch cck;
@@ -681,16 +777,73 @@ void Display5() {
 	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c[1]);
 
 	glRasterPos2d(-1.0, 0.9);
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'I');
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'm');
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'a');
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'g');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'S');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'i');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'e');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'r');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'p');
 	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'i');
 	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'n');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 's');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'k');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'i');
+
+	nivel++;
+}
+
+void Display6() {
+	CArborePerronModificat arbPeroneM;
+
+	char c[3];
+	sprintf(c, "%2d", nivel);
+	glRasterPos2d(-0.98, -0.98);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'N');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'i');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'v');
 	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'e');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'l');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, '=');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c[0]);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c[1]);
+
+	glRasterPos2d(-1.0, -0.9);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'c');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'u');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'r');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'b');
 	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'a');
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, ' ');
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, '1');
+	
+	glPushMatrix();
+	glLoadIdentity();
+		glScaled(0.5, 0.5, 1);
+		glTranslated(0.5, 0.8, 0.0);
+	arbPeroneM.afisare(0.6, nivel);
+	glPopMatrix();
+	nivel++;
+}
+
+void Display7() {
+	CSierpinkiArrow arrow;
+	arrow.afisare(1, nivel);
+
+	char c[3];
+	sprintf(c, "%2d", nivel);
+	glRasterPos2d(-0.98, -0.98);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'N');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'i');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'v');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'e');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'l');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, '=');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c[0]);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c[1]);
+
+	glRasterPos2d(-1.0, -0.9);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'A');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'r');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'r');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'o');
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'w');
 
 	nivel++;
 }
@@ -734,6 +887,14 @@ void Display(void)
 	case '5':
 		glClear(GL_COLOR_BUFFER_BIT);
 		Display5();
+		break;
+	case '6':
+		glClear(GL_COLOR_BUFFER_BIT);
+		Display6();
+		break;
+	case '7':
+		glClear(GL_COLOR_BUFFER_BIT);
+		Display7();
 		break;
     default:
       break;
